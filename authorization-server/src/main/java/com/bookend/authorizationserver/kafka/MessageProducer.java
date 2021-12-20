@@ -38,7 +38,10 @@ public class MessageProducer {
         kafkaTemplate.send("resetPassword-mail", mailRequest);
     }
 
+    public void test() {
 
+        kafkaTemplate.send("resetPassword-mail", "test");
+    }
 
 
 }

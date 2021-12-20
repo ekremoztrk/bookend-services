@@ -1,5 +1,6 @@
 package com.bookend.authorizationserver.controller;
 
+import com.bookend.authorizationserver.kafka.MessageProducer;
 import com.bookend.authorizationserver.payload.ConfirmResponse;
 import com.bookend.authorizationserver.payload.NewPasswordRequest;
 import com.bookend.authorizationserver.payload.ResetPasswordRequest;
@@ -34,6 +35,9 @@ public class AuthController {
     @Autowired
     UserService userService;
 
+    @Autowired
+    MessageProducer messageProducer;
+
     /**
      * AUTHS-AC-1 (CM_5)
      */
@@ -46,6 +50,13 @@ public class AuthController {
     public ResponseEntity<?> signUp(@RequestBody SignUpRequest signUpRequest){
         SignUpResponse res = userService.addUser(signUpRequest);
         return ResponseEntity.ok(res);
+    }
+
+
+    @GetMapping("test")
+    public ResponseEntity<?> xxx(){
+        messageProducer.test();
+        return ResponseEntity.ok("xx");
     }
 
     /**
