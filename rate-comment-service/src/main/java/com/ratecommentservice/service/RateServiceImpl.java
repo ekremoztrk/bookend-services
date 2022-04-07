@@ -75,7 +75,7 @@ public class RateServiceImpl implements RateService {
         book.getRates().add(rate);
         book.setAverageRate(book.calAv());
         Map<String, String> message= new HashMap<String, String>();
-        message.put("book",book.getBookid());
+        message.put("bookks",book.getBookid());
         message.put("rate",book.getAverageRate().toString());
 
         KafkaMessage kafkaMessage = new KafkaMessage(RATE_TOPIC,message);
